@@ -14,8 +14,7 @@ public class Main {
         //Barco b = loadBarco("California");
         //b.imprimir();
 
-        imprimirClasses(2,10);
-
+        //imprimirClasses(2,10);
 
 
         conector.closeConexion();//cerrar la conexion
@@ -80,7 +79,7 @@ public class Main {
 
             while(rst.next()){
                 System.out.println(String.format("%-20s%-20s%-20s",
-                        rst.getString("ships"),
+                        rst.getString("class"),
                         rst.getString("country"),
                         rst.getInt("numGuns")));
             }
@@ -92,5 +91,39 @@ public class Main {
         }
     }
 
+    public void showNulls(String nomTaula){
+        try {
+            Connection con=conector.getLaConexio();
+
+            String sql="select * from classes order by ;";
+
+            Statement st=con.createStatement();
+
+            ResultSet rst= st.executeQuery(sql);
+
+
+            System.out.println(String.format("%-20s", "Camps de la <classes> que poden ser nulls"));
+            for (int i = 0; i < 50; i++) {
+                System.out.print("=");
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void inserirBarco(){
+        try{
+            Connection con=conector.getLaConexio();
+
+            String sql="INSERTO INTO participa VALUES('?,?,?');";
+
+            Statement st=con.createStatement();
+
+            ResultSet rst= st.executeQuery(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 }
